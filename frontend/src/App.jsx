@@ -7,9 +7,9 @@ import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/authStore";
 import { useEffect } from "react";
 import DashboardPage from "./pages/DashboardPage";
-import LoadingSpinner from "./components/loadingSpinner";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 // eslint-disable-next-line
 const ProtectedRoute = ({ children }) => {
