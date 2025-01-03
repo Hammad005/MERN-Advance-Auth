@@ -13,8 +13,8 @@ const ForgotPasswordPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await forgotPassword(email);
     setIsSubmitted(true);
+    await forgotPassword(email);
   }
   return (
     <motion.div
