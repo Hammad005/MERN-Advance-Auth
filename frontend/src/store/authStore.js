@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/auth";
+const API_URL = import.meta.env.MODE === "development" ? "http://localhost:3000/api/auth" : "/api/auth";
 
 axios.defaults.withCredentials = true;
 
@@ -24,7 +24,7 @@ export const useAuthStore = create((set) => ({
             });
             set({ user: response.data.user, isAuthenticated: true, isLoading: false });
         } catch (error) {
-            set({ error: error.response.data.message || "Error siging up", isLoading: false });
+            set({ error: "Error siging up", isLoading: false });
             throw error;
         }
     },
@@ -38,7 +38,7 @@ export const useAuthStore = create((set) => ({
             });
             set({ user: response.data.user, isAuthenticated: true, isLoading: false, error: null });
         } catch (error) {
-            set({ error: error.response.data.message || "Error logging in", isLoading: false });
+            set({ error: "Error logging in", isLoading: false });
             throw error;
         }
     },
@@ -63,7 +63,7 @@ export const useAuthStore = create((set) => ({
             set({ user: response.data.user, isAuthenticated: true, isLoading: false });
             return response.data
         } catch (error) {
-            set({ error: error.response.data.message || "Error verifying email", isLoading: false });
+            set({ error: "Error verifying email", isLoading: false });
             throw error;
         }
     },
@@ -88,7 +88,7 @@ export const useAuthStore = create((set) => ({
             });
             set({ message: response.data.message, isLoading: false });
         } catch (error) {
-            set({ isLoading: false, error: error.response.data.message || "Error sending password reset email" });
+            set({ isLoading: false, error: "Error sending password reset email" });
             throw error;
         }
     },
@@ -101,7 +101,7 @@ export const useAuthStore = create((set) => ({
             });
             set({ message: response.data.message, isLoading: false });
         } catch (error) {
-            set({ isLoading: false, error: error.response.data.message || "Error resetting password" });
+            set({ isLoading: false, error: "Error resetting password" });
             throw error;
         }
     }
